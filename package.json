@@ -8,6 +8,15 @@
     "sparkline-display",
     "sparkline"
 	],
+  "author": {
+    "name": "seymoe",
+    "email": "seymoe@yeah.net",
+    "url": "https://github.com/seymoe"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/seymoe/directus-extension-sparkline-display"
+  },
 	"directus:extension": {
 		"type": "display",
 		"path": "index.js",
@@ -21,5 +30,6 @@
 		"@directus/extensions-sdk": "9.8.0",
 		"apexcharts": "^3.35.0",
 		"vue": "^3.2.31"
-	}
+	},
+  "license": "MIT"
 }
