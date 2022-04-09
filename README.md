@@ -18,6 +18,7 @@ To use this custom display into a data model, you have to:
 
 - Add a simple field with **JSON** type, like:
   ```
+  // Array Object, should set key "power"
   [
     {
       time: '2021',
@@ -28,8 +29,9 @@ To use this custom display into a data model, you have to:
       power: 20
     }
   ]
+  // Array, don't need set key.
+  [ 10, 2, 10, 30 ]
   ```
-- Config field's display in advanced mode, choose sparkline type and data key, if you want show data with 'power', just fill in 'power'.
 - Enjoy ! 🎉
 
 ## Building locally and contributing

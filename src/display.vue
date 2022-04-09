@@ -7,7 +7,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, watch, nextTick, onMounted, onUnmounted } from 'vue'
+import { defineComponent, ref, watch, onUnmounted } from 'vue'
 import ApexCharts from 'apexcharts'
 
 export default defineComponent({
@@ -40,9 +40,9 @@ export default defineComponent({
 		}
 	},
 	setup(props) {
-    // 行数据
+    // row data
     const dataList = ref([])
-    // 图表
+    // chart
     const chartEl = ref()
     const chart = ref()
     
@@ -80,10 +80,16 @@ export default defineComponent({
           height: 34,
           sparkline: {
             enabled: true
+          },
+          animations: {
+            enabled: false
           }
         },
         stroke: {
           width: 2
+        },
+        dataLabels: {
+          enabled: false
         },
         // tooltip: {
         //   enabled: false
@@ -123,21 +129,16 @@ export default defineComponent({
         options.chart.width = 34
       } else if (props.sparklineType === 'line') {
       }
-      nextTick(() => {
+      setTimeout(() => {
         if (chart.value) {
-          console.log('图表更新', options)
           chart.value.updateOptions(options)
         } else {
-          console.log('图表创建', options)
           chart.value = new ApexCharts(chartEl.value, options)
           chart.value.render()
         }
       })
     }
 
-    onMounted(() => {
-      setupChart()
-    })
     onUnmounted(() => {
 			chart.value?.destroy()
 		})
