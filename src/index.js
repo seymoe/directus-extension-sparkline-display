@@ -4,7 +4,7 @@ export default {
 	id: 'sparline-display',
 	name: 'SparkLine Display',
 	description: 'Sparkline Display',
-	types: ['json'],
+	types: ['json', 'text'],
 	icon: 'settings_ethernet',
 	component: Display,
 	options: [

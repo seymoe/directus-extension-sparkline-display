@@ -9,6 +9,7 @@
 <script lang="ts">
 import { defineComponent, ref, watch, onUnmounted } from 'vue'
 import ApexCharts from 'apexcharts'
+import Papa from 'papaparse'
 
 export default defineComponent({
 	props: {
@@ -48,9 +49,10 @@ export default defineComponent({
     
     watch(() => props.value,
       (val) => {
-        if (typeof val === 'string') {
+        if (props.type === 'text' && typeof val === 'string') {
           try {
-            dataList.value = JSON.parse(val)
+            const { data } = Papa.parse(val, {header: true, skipEmptyLines: true})
+            dataList.value = data || []
           } catch (err) {
             console.log(err)
           }
@@ -130,6 +132,7 @@ export default defineComponent({
       } else if (props.sparklineType === 'line') {
       }
       setTimeout(() => {
+        if (!chartEl.value) return
         if (chart.value) {
           chart.value.updateOptions(options)
         } else {
