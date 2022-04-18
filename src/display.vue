@@ -14,7 +14,7 @@ import Papa from 'papaparse'
 export default defineComponent({
 	props: {
 		value: {
-			type: [String, Array],
+			type: [String, Array, Object],
 			default: null
 		},
     dataKey: {
@@ -57,7 +57,22 @@ export default defineComponent({
             console.log(err)
           }
         } else {
-          dataList.value = val === null ? [] : val
+          let list = []
+          if (Array.isArray(val)) {
+            list = val
+          } else if (val && Object.keys(val).length) {
+            let keys = Object.keys(val)
+            let rowLen = val[keys[0]]['length']
+            for (let i = 0; i < rowLen; i++) {
+              let o = {}
+              for (let j = 0; j < keys.length; j++) {
+                let k = keys[j]
+                o[k] = val[k][i]
+              }
+              list.push(o)
+            }
+          }
+          dataList.value = list
         }
         setupChart()
       },
