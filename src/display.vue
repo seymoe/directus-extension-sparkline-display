@@ -1,5 +1,5 @@
 <template>
-	<div class="extension-display-wrapper">
+	<div class="extention-display-wrapper">
     <div class="chart-wrap">
       <div ref="chartEl" class="time-series" />
     </div>
@@ -169,5 +169,11 @@ export default defineComponent({
 <style scoped>
 .table-wrap{
   height: 60px;
+}
+</style>
+
+<style>
+.extention-display-wrapper .chart-wrap .apexcharts-tooltip.apexcharts-theme-dark {
+  color: #444;
 }
 </style>
